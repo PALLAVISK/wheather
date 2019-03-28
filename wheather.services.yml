@@ -1,0 +1,3 @@
+services:
+  wheather.client:
+    class: 'Drupal\wheather\wheatherserv'

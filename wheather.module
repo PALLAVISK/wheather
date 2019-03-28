@@ -1,0 +1,19 @@
+<?php
+function wheather_theme() {
+ return array(
+   wheatherblock => array(
+    'variables' => array(
+      'titles' => NULL, 
+      'description' => NULL, 
+      'temp_minimum'=> NULL,
+      'temp_maximum'=> NULL,
+      'pressure'=> NULL,
+      'humidity'=> NULL,
+      'wind'=> NULL, 
+      'image' => NULL),
+    'template' => 'wheatherblock',
+   ),
+ );
+}
+
+

@@ -1,0 +1,16 @@
+.row{
+    width:100%;
+    display: flex;
+    margin-left:50px;
+}
+.row .new{
+    width:25%;
+    margin:16px;
+}
+.tit{
+    color:white;
+    margin-left:200px;
+}
+.des{
+    color: beige;
+}

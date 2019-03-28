@@ -1,0 +1,42 @@
+{{ attach_library('wheather/global-styling') }}
+<div class="topwarp">
+
+
+    <div class = "mainwrap" style="background-image:url('{{ file_url(image) }}');">
+        <h2>{{ city_img }}</h2>
+        <!-- <img src="/Applications/MAMP/htdocs/drupal8-dev/web/modules/wheather/images/download (1).jpeg"> -->
+        <div class="tit">
+        <h2>{{ titles }}</h2>
+        </div>
+        <div class="des">
+        <h2>{{ description }}</h2>
+        </div>
+    </div>
+
+
+
+   
+</div>
+
+    <div class="row">
+        <div class="new">
+            <p>MIN</p>
+            {{ temp_minimum }} 
+        </div>
+        <div class="new">
+            <p>MAX</p>
+            {{ temp_maximum }}
+        </div>
+        <div class="new">
+            <P>PRESSURE</P>
+            {{ pressure }}
+        </div>
+        <div class="new">
+            <P>HUMIDITY</P>
+            {{ humidity }}
+        </div>
+        <div class="new">
+            <P>WIND</P>
+            {{ wind }}
+        </div>
+    </div>
