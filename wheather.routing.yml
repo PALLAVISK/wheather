@@ -1,7 +1,7 @@
 wheather.form:
- path: '/wheather_data'
+ path: '/wheather-data'
  defaults:
    _title: 'wheather form is here'
-   _form: '\Drupal\wheather\Form\wheather_data'
+   _form: '\Drupal\wheather\Form\WheatherData'
  requirements:
-   _permission: 'access content'
+   _permission: 'administer site configuration'

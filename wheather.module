@@ -1,7 +1,7 @@
 <?php
 function wheather_theme() {
  return array(
-   wheatherblock => array(
+   WheatherBlock => array(
     'variables' => array(
       'titles' => NULL, 
       'description' => NULL, 
@@ -11,7 +11,7 @@ function wheather_theme() {
       'humidity'=> NULL,
       'wind'=> NULL, 
       'image' => NULL),
-    'template' => 'wheatherblock',
+    'template' => 'WheatherBlock',
    ),
  );
 }

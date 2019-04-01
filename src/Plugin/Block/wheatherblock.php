@@ -3,6 +3,9 @@ namespace Drupal\wheather\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface; 
 use Drupal\Component\Serialization\Json;
+use Drupal\wheather\WheatherService;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
 * Provides a weather_custom_block with a simple text.
 *
@@ -11,7 +14,33 @@ use Drupal\Component\Serialization\Json;
 *   admin_label = @Translation("wheather block"),
 * )
 */
-class wheatherblock extends BlockBase {
+
+//implements ContainerFactoryPluginInterface
+class WheatherBlock extends BlockBase implements ContainerFactoryPluginInterface{
+
+  protected $wheather_service;
+
+   /**
+   * {@inheritdoc}
+   */
+    public function __construct(array $configuration, $plugin_id, $plugin_definition, WheatherService $wheather_service) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->wheather_servcie = $wheather_service;
+  }
+  
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+      return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('wheather.client')
+    );
+  }
+
+
   /**
    * {@inheritdoc}
    */
@@ -64,10 +93,15 @@ class wheatherblock extends BlockBase {
 
     $config = $this->getConfiguration();
     $confi=\Drupal::config('wheather.settings');
+    // kint($config);
+    // $confi=$this->wheather_service->getConfiguration('wheather.settings');
+    // kint($confi);
     $appid=$confi->get('app');
-
+    $appid=$confi->get('simple.id');
     $serv = \Drupal::service('wheather.client');
     $serviCall=$serv->test($city);
+    // $serviCall=$this->wheather_service->getData($city);
+
     $jsonObj=Json::decode($serviCall);
     $city_name = isset($config['city']) ? $config['city'] : '';
     $description = isset($config['description']) ? $config['description'] : '';
@@ -75,10 +109,9 @@ class wheatherblock extends BlockBase {
     $image = \Drupal\file\Entity\File::load($city_img[0]);
     $image = $image->uri->value;
 
-    // kint($jsonObj['main']['pressure']);
-    // exit();
+    
     return array(
-      '#theme' => 'wheatherblock',
+      '#theme' => 'WheatherBlock',
       '#type' => 'markup',
       '#titles' => $city_name,
       '#temp_minimum' => $jsonObj['main']['temp_min'] ,
@@ -86,7 +119,6 @@ class wheatherblock extends BlockBase {
       '#pressure' => $jsonObj['main']['pressure'] ,
       '#humidity' => $jsonObj['main']['humidity'] ,
       '#wind' => $jsonObj['wind']['speed'] ,
-      // '#api' => $jsonObj['main'],
       '#description' => $description,
       '#image' => $image
     );

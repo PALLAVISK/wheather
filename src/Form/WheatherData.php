@@ -6,7 +6,7 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 
-class wheather_data extends ConfigFormBase {
+class WheatherData extends ConfigFormBase {
 
   public function getFormId() {
  
@@ -16,7 +16,7 @@ class wheather_data extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildForm($form, $form_state);
  
-    $config = $this->config('simple.settings');
+    $config = $this->config('wheather.settings');
  
     $form['id'] = array(
  
@@ -33,7 +33,7 @@ class wheather_data extends ConfigFormBase {
 }
 public function submitForm(array &$form, FormStateInterface $form_state) {
  
-    $config = $this->config('simple.settings');
+    $config = $this->config('wheather.settings');
  
     $config->set('simple.id', $form_state->getValue('id'));
  
@@ -46,7 +46,7 @@ public function submitForm(array &$form, FormStateInterface $form_state) {
  
     return [
  
-      'simple.settings',
+      'wheather.settings',
  
     ];
  
