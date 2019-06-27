@@ -1,19 +1,26 @@
 <?php
+
+/**
+ * @file
+ */
+
+/**
+ *
+ */
 function wheather_theme() {
- return array(
-   WheatherBlock => array(
-    'variables' => array(
-      'titles' => NULL, 
-      'description' => NULL, 
-      'temp_minimum'=> NULL,
-      'temp_maximum'=> NULL,
-      'pressure'=> NULL,
-      'humidity'=> NULL,
-      'wind'=> NULL, 
-      'image' => NULL),
-    'template' => 'WheatherBlock',
-   ),
- );
+  return [
+    WheatherBlock => [
+      'variables' => [
+        'titles' => NULL,
+        'description' => NULL,
+        'temp_minimum' => NULL,
+        'temp_maximum' => NULL,
+        'pressure' => NULL,
+        'humidity' => NULL,
+        'wind' => NULL,
+        'image' => NULL,
+      ],
+      'template' => 'WheatherBlock',
+    ],
+  ];
 }
-
-
